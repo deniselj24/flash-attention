@@ -23,8 +23,8 @@ RUN pip3 install packaging \
 
 RUN python3 -m pip install build
 
-# copy the setup file to the home directory of container 
-COPY setup.py ./
+# copy all current files in this directory (flash attention) to the home directory of container 
+COPY . ./
 
 # Build wheel 
 RUN python3 setup.py bdist_wheel
