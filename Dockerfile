@@ -5,7 +5,8 @@ ENV CUDA_HOME="/usr/local/cuda"
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     python3-pip \
-    git
+    git \
+    python-dev
 
 RUN pip3 install --no-cache-dir --upgrade pip
 
