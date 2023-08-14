@@ -1,6 +1,6 @@
 FROM --platform=linux/amd64 nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 
-ENV CUDA_HOME="/usr/local/cuda"
+#ENV CUDA_HOME="/usr/local/cuda"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
