@@ -1,0 +1,25 @@
+name: Upload to PyPI
+
+on:
+  workflow_dispatch:
+    inputs:
+      PYPI_API_TOKEN:
+        required: true
+        description: your API token on PyPI
+
+jobs:
+  pypi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: build Dockerfile 
+        runs: 
+          using: 'docker'
+          image: 'Dockerfile'
+      - name: Publish package
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ github.event.inputs.PYPI_API_TOKEN }}
