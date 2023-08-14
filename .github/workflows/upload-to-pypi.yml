@@ -20,9 +20,7 @@ jobs:
         run: docker build -t flash-attention-wheel . 
       - name: Run Docker container 
         run: docker run -v $(pwd):/app flash-attention-wheel python setup.py sdist bdist_wheel
-      - name: Publish package on Pypi using Twine 
-        run: | 
-          pip install twine 
-          # testing purposes 
-          twine upload -r testpypi dist/*
-          twine upload dist /*
+      - name: Publish package
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ github.event.inputs.PYPI_API_TOKEN }}
