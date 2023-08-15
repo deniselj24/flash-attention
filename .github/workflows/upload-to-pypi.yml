@@ -20,8 +20,10 @@ jobs:
       run: docker build -t togethercomputer/flash-attention-wheel:latest .
       
     - name: Run Docker container
-      run: docker run -v $(pwd)/dist:/app/dist togethercomputer/flash-attention-wheel:latest python setup.py bdist_wheel
-  
+      run: |
+        docker run -v $(pwd)/dist:/app/dist togethercomputer/flash-attention-wheel:latest python setup.py bdist_wheel
+        ls -l dist
+        
     - name: Publish package
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_TOKEN }}
