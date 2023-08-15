@@ -28,4 +28,4 @@ RUN python3 -m pip install build
 COPY . ./
 
 # Build wheel 
-RUN python3 setup.py bdist_wheel
+# RUN python3 setup.py bdist_wheel
