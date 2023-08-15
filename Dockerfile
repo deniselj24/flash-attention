@@ -24,5 +24,5 @@ RUN pip3 install packaging \
 
 RUN python3 -m pip install build
 
-# copy all current files in this directory (flash attention) to the home directory of container
+# copy all current files in this directory (flash attention) to the home directory of Docker container
 COPY . ./
