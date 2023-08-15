@@ -19,10 +19,8 @@ jobs:
     - name: Build Docker image that installs dependencies
       run: docker build -t togethercomputer/flash-attention-wheel .
       
-    - name: Run Docker container and mount it to the host machine so dist can be accessed by host 
-      run: |
-        mkdir dist
-        docker run -v $(pwd)/dist:/app/dist togethercomputer/flash-attention-wheel:latest
+    - name: Run Docker container and mount it to the host machine, and create the .whl file
+      run: docker run -v $(pwd):/app togethercomputer/flash-attention-wheel:latest python setup.py bdist_wheel
       
     - name: Publish package
       env:
