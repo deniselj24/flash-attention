@@ -17,13 +17,11 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Build Docker image that installs dependencies
-      run: docker build -t togethercomputer/flash-attention-wheel:latest .
+      run: docker build -t togethercomputer/flash-attention-wheel .
       
-    - name: Run Docker container
-      run: |
-        docker run -v $(pwd)/dist:/app/dist togethercomputer/flash-attention-wheel:latest python setup.py bdist_wheel
-        ls -l dist
-        
+    - name: Run Docker container and mount it to the host machine so dist can be accessed by host 
+      run: docker run -v $(pwd)/dist:/app/dist togethercomputer/flash-attention-wheel:latest
+      
     - name: Publish package
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_TOKEN }}
