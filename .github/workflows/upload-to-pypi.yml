@@ -20,7 +20,9 @@ jobs:
       run: docker build -t togethercomputer/flash-attention-wheel .
       
     - name: Run Docker container and mount it to the host machine so dist can be accessed by host 
-      run: docker run -v $(pwd)/dist:/app/dist togethercomputer/flash-attention-wheel:latest
+      run: |
+        mkdir dist
+        docker run -v $(pwd)/dist:/app/dist togethercomputer/flash-attention-wheel:latest
       
     - name: Publish package
       env:
